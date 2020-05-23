@@ -31,4 +31,20 @@ layout: default
     <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
   {%- endif -%}
 
+  {%- if site.projects.size > 0 -%}
+    <h2 class="project-list-heading">{{ page.list_title | default: "Projects" }}</h2>
+    <ul class="project-list">
+      {%- for project in site.projects -%}
+      <li>
+       <h3>
+         <a class="project-link" href="{{ project.url | relative_url }}">
+           {{ project.name | escape }}
+         </a>
+       </h3>
+        <p> {{ project.description }}</p>
+      </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+
 </div>
