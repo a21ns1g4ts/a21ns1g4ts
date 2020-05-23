@@ -26,15 +26,13 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://atiladanvi.netlify.app" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: atiladanvi
 github_username:  atiladanvi
-author:
-  name: Atila Silva
-  email: "atila.danvi@outlook.com"
 
 # Build settings
 theme: minima
 plugins:
   - jekyll-feed
   - jemoji
+  - jekyll-seo-tag
 
 # Disqus Comments
 disqus:
