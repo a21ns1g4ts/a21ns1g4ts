@@ -38,7 +38,10 @@ plugins:
 disqus:
   shortname: atiladanvi
 
-#Collectons
+# Analytics
+google_analytics: true
+
+# Collectons
 collections:
   projects:
     output: true
