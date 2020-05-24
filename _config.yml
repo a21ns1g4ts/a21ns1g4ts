@@ -41,7 +41,7 @@ disqus:
 # Analytics
 google_analytics: true
 
-# Collectons
+# Collections
 collections:
   projects:
     output: true
