@@ -1,7 +1,6 @@
 require 'uri'
 require 'net/http'
 
-
 module CodersRank
   class Generator < Jekyll::Generator
     def generate(site)
