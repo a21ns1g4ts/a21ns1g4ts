@@ -41,7 +41,14 @@ layout: default
            {{ project.name | escape }}
          </a>
        </h3>
-        <p> {{ project.description }}</p>
+       <p> {{ project.description }}</p>
+        {%- if project.source_url -%}
+         :octocat: <a target="_blank" href="{{ project.source_url }}">Source code</a>
+        {%- endif -%}
+
+        {%- if project.demo_url -%}
+        <br> :computer: <a target="_blank" href="{{ project.demo_url }}">Live demo</a>
+        {%- endif -%}
       </li>
       {%- endfor -%}
     </ul>

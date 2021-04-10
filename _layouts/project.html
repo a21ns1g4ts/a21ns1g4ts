@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<article class="project h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="project h-entry" itemscope itemtype="http://schema.org/Project">
 
   <header class="project-header">
     <h1 class="project-title p-name" itemprop="name headline">{{ page.name | escape }}</h1>
@@ -9,7 +9,9 @@ layout: default
   </header>
 
   <div class="project-content e-content" itemprop="projectBody">
-    {{ content }}
+    :octocat: <a target="_blank" href="{{ page.source_url }}">Source code</a>
+    <br>
+    :computer: <a target="_blank" href="{{ page.demo_url }}">Live demo</a>
   </div>
 
   {%- if site.disqus.shortname -%}
