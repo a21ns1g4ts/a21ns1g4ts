@@ -26,9 +26,12 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://atiladanvi.me" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: Atiladanvi
 github_username:  Atiladanvi
+codersrank_username:  Atiladanvi
 
 # Build settings
 theme: minima
+
+paginate: 5
 
 minima:
   skin: classic
@@ -40,7 +43,7 @@ plugins:
 
 # Disqus Comments
 disqus:
-  shortname: atiladanvi
+  shortname: Atiladanvi
 
 # Analytics
 google_analytics: true
