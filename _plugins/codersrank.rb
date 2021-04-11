@@ -1,5 +1,6 @@
 require 'uri'
 require 'net/http'
+require 'json'
 
 module CodersRank
   class Generator < Jekyll::Generator

@@ -7,13 +7,11 @@ layout: default
     <h1 class="page-heading">{{ page.title }}</h1>
   {%- endif -%}
 
+  <p id="user_intro" style="white-space: pre-line">{{ site.user.intro | lstrip }}</p>
+
   <div>
     <codersrank-summary username="{{ site.codersrank_username }}" branding="false"></codersrank-summary>
   </div>
-
-  <p id="user_intro" style="white-space: pre-line">
-    {{ site.user.intro }}
-  </p>
 
   <div>
     <h3>My contributions in the last year</h3>
@@ -28,20 +26,24 @@ layout: default
     {%- for project in site.projects -%}
     <li>
       <h3>
-        <a class="post-link" href="{{ post.url | relative_url }}">
+        <a class="post-link" href="{{ project.url | relative_url }}">
           {{ project.name | escape }}
         </a>
       </h3>
-      <p> {{ project.description }}</p>
+      {%- if project.source_url -%}
+        {{ project.description }}
+      {%- endif -%}
+      <br>
       {%- if project.source_url -%}
         :octocat: <a target="_blank" href="{{ project.source_url }}">Source code</a>
       {%- endif -%}
-
+      <br>
       {%- if project.demo_url -%}
-        <br> :computer: <a target="_blank" href="{{ project.demo_url }}">Live demo</a>
+        :computer: <a target="_blank" href="{{ project.demo_url }}">Live demo</a>
       {%- endif -%}
+      <br>
       {%- if project.content -%}
-        <p> {{ project.content }} </p>
+        {{ project.content }}
       {%- endif -%}
     </li>
     <hr>
