@@ -1,23 +1,5 @@
-{%- if jekyll.environment == "production" -%}
-  <script>
-    (function() {
-      const userIntroTag = document.getElementById('user_intro')
-      window.user = JSON.parse(decodeURIComponent("{{ site.user | jsonify | uri_escape }}"));
-      const request = new XMLHttpRequest()
-      // Request updates from codersrank
-      request.onreadystatechange = function() {
-        if(request.readyState === 4) {
-          if(request.status === 200) {
-            // Set user intro content
-            const userIntroContent = JSON.parse(request.responseText).intro;
-            // Update intro content if is updated from codersrank
-            if (window.user.intro !== userIntroContent)
-              userIntroTag.innerHTML = userIntroContent
-          }
-        }
-      }
-      request.open('Get', `https://api.codersrank.io/v2/users/{{ site.codersrank_username }}?get_by=username`)
-      request.send()
-    })();
-  </script>
-{%- endif -%}
+<script>
+  (function() {
+    window.user = JSON.parse(decodeURIComponent("{{ site.user | jsonify | uri_escape }}"));
+  })();
+</script>
