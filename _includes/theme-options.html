@@ -1,0 +1,70 @@
+<div>
+  <div id="dark-theme" style="margin-right: 0px;" class="pretty p-icon p-toggle p-plain">
+    <input id="dark-check" onclick="switch_theme('dark', this.checked)" type="checkbox" />
+    <div class="state p-success-o p-on">
+      🌘
+    </div>
+    <div class="state p-off">
+      🌚
+    </div>
+  </div>
+  <div id="classic-theme" class="pretty p-icon p-toggle p-plain">
+    <input id="classic-check" onclick="switch_theme('classic', this.checked)" type="checkbox" />
+    <div class="state p-success-o p-on">
+      🌞
+    </div>
+    <div class="state p-off">
+      🌗
+    </div>
+  </div>
+</div>
+
+<script>
+  const theme = localStorage.getItem('theme') || localStorage.setItem('theme',  "{{ site.minima.skin | default: 'dark' }}") || "{{ site.minima.skin | default: 'dark' }}"
+
+  let linkCss = document.getElementById('style-sheet')
+  linkCss.setAttribute('href', `/assets/${theme}.css`);
+
+  let darkCheck =  document.getElementById('dark-check')
+  let classicCheck =  document.getElementById('classic-check')
+
+  let classicTheme = document.getElementById('classic-theme')
+  let darkTheme = document.getElementById('dark-theme')
+
+  if (theme === 'dark' || theme === 'solarized-dark'){
+    darkCheck.checked = theme !== 'dark'
+    classicTheme.style.display = 'none'
+  }
+
+  if (theme === 'classic' || theme === 'solarized-classic'){
+    classicCheck.checked = theme === 'classic'
+    darkTheme.style.display = 'none'
+  }
+
+  function switch_theme (theme, state) {
+    if (theme === 'dark' && state){
+      localStorage.setItem('theme', 'solarized-dark')
+      linkCss.setAttribute('href', '/assets/solarized-dark.css')
+    }
+
+    if (theme === 'dark' && !state){
+      classicTheme.style.display = ''
+      darkTheme.style.display = 'none'
+      localStorage.setItem('theme', 'solarized-classic')
+      linkCss.setAttribute('href', '/assets/solarized-classic.css')
+    }
+
+    if (theme === 'classic' && state){
+      localStorage.setItem('theme', 'classic')
+      linkCss.setAttribute('href', '/assets/classic.css')
+    }
+
+    if (theme === 'classic' && !state){
+      classicTheme.style.display = 'none'
+      darkTheme.style.display = ''
+      localStorage.setItem('theme', 'dark')
+      linkCss.setAttribute('href', '/assets/dark.css')
+    }
+  }
+</script>
+

@@ -34,7 +34,7 @@ theme: minima
 paginate: 5
 
 minima:
-  skin: classic
+  skin: dark
 
 plugins:
   - jekyll-feed
