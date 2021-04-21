@@ -1,2 +1,78 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
+
+/**
+ * `container` element
+ */
+.container {
+  margin: 10px 10px 10px 10px;
+  max-width: 600px;
+  text-align: center;
+}
+
+
+
+/**
+ * `emoji icon`
+ */
+.emoji-icon {
+  margin-bottom: initial;
+}
+
+.emoji-icon[size=sm] {
+  font-size: small;
+}
+
+.emoji-icon[size=md] {
+  font-size: medium;
+}
+
+.emoji-icon[size=lg] {
+  font-size: large;
+}
+
+.emoji-icon[size=xl] {
+  font-size: x-large;
+}
+
+.emoji-icon[size=xl-xl] {
+  font-size: xx-large;
+}
+
+.emoji-icon[size=xl-xl-xl] {
+  font-size: xxx-large;
+}
+
+@-webkit-keyframes emoji-icon-zoom-out {
+  50% {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.emoji-icon[zoom] {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.emoji-icon[zoom]:hover, .emoji-icon[zoom]:focus, .emoji-icon[zoom]:active {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}
+
+.emoji-icon[zoom=out]:hover, .emoji-icon[zoom=out]:focus, .emoji-icon[zoom=out]:active {
+  -webkit-animation-name: emoji-icon-zoom-out;
+  animation-name: emoji-icon-zoom-out;
+}

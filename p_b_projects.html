@@ -1,0 +1,41 @@
+---
+permalink: /projects.html
+title: Projects
+layout: page
+---
+
+{%- if projects.size > 0 -%}
+  <h2 class="post-list-heading">{{ page.list_title | default: "Projects" }}</h2>
+  <ul class="post-list">
+    {%- for project in site.projects -%}
+    <li>
+      <h3>
+        <a class="post-link" href="{{ project.url | relative_url }}">
+          {{ project.name | escape }}
+        </a>
+      </h3>
+      {%- if project.source_url -%}
+        {{ project.description }}
+      {%- endif -%}
+      <br>
+      {%- if project.source_url -%}
+        :octocat: <a target="_blank" href="{{ project.source_url }}">Source code</a>
+      {%- endif -%}
+      <br>
+      {%- if project.demo_url -%}
+        :computer: <a target="_blank" href="{{ project.demo_url }}">Live demo</a>
+      {%- endif -%}
+      <br>
+      {%- if project.content -%}
+        {{ project.content }}
+      {%- endif -%}
+    </li>
+    <hr>
+    {%- endfor -%}
+  </ul>
+{%- else -%}
+  <div class="container">
+    <span size="xl-xl" zoom="out" class="emoji-icon">🤷‍</span>
+    <p>No projects to list</p>
+  </div>
+{%- endif -%}

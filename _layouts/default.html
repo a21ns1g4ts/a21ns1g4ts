@@ -13,7 +13,9 @@
       </div>
     </main>
 
-    {%- include footer.html -%}
+    {%- if site.footer -%}
+      {%- include footer.html -%}
+    {%- endif -%}
 
   </body>
 
