@@ -3,6 +3,7 @@ layout: default
 ---
 
 <div class="home">
+
   {%- if page.title -%}
     <h1 class="page-heading">{{ page.title }}</h1>
   {%- endif -%}
@@ -13,6 +14,18 @@ layout: default
     <h3>My open source contributions in the last year</h3>
     <codersrank-activity username="{{ site.codersrank_username }}" branding="false" labels legend tooltip></codersrank-activity>
   </div>
+
+  <div>
+    <h3>My work experience timeline</h3>
+    <codersrank-timeline username="{{ site.codersrank_username }}" branding="false"></codersrank-timeline>
+    <style>
+      codersrank-timeline {
+        --timeline-item-text-color: #463f3f;
+      }
+    </style>
+  </div>
+
+  {%- include social-bar.html -%}
 
   {{ content }}
 

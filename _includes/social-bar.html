@@ -1,0 +1,20 @@
+<div class="container mt-lg mx-none">
+  <h3 class="mb-none">Get in touch <a href="mailto:{{ site.email | cgi_escape | escape }}"><small class="text-sm-sm">{{ site.email | escape }}</small></a></h3>
+  <div class="social-bar">
+    {%- if site.github_username -%}
+      <div class="social-tile">
+        <span size="md" zoom="out" class="emoji-icon">:octocat:</span>
+        <a target="_blank" href="https://github.com/{{ site.github_username | cgi_escape | escape }}">Github</a>
+        <br>
+        <p>@{{ site.github_username | escape }}</p>
+      </div>
+    {%- endif -%}
+    {%- if site.twitter_username -%}
+      <div class="social-tile">
+        <span size="md" zoom="out" class="emoji-icon">:bird:</span>
+        <a target="_blank" href="https://www.twitter.com/{{ site.twitter_username | cgi_escape | escape }}">Twiter</a>
+        <p>@{{ site.twitter_username | escape }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
