@@ -1,0 +1,19 @@
+<script>
+  (function() {
+    const createKatexComponent = function () {
+      class JKatex extends HTMLElement {
+        constructor() {
+          super();
+          this.innerHTML =  window.katex.renderToString(this.innerHTML, {
+            throwOnError: false
+          })
+        }
+      }
+      customElements.define('j-katex', JKatex);
+    }
+
+    createKatexComponent()
+  })();
+</script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script>

@@ -3,30 +3,39 @@ layout: default
 ---
 
 <div class="home">
-
   {%- if page.title -%}
     <h1 class="page-heading">{{ page.title }}</h1>
   {%- endif -%}
 
-  <p style="white-space: pre-line">{{ site.user.intro | lstrip }}</p>
-
-  <div>
-    <h3>My open source contributions in the last year</h3>
-    <codersrank-activity username="{{ site.codersrank_username }}" branding="false" labels legend tooltip></codersrank-activity>
+  <div class="container mx-none user-intro">
+    <p>{{ site.user.intro | lstrip }}</p>
   </div>
-
-  <div>
-    <h3>My work experience timeline</h3>
-    <codersrank-timeline username="{{ site.codersrank_username }}" branding="false"></codersrank-timeline>
-    <style>
-      codersrank-timeline {
-        --timeline-item-text-color: #463f3f;
-      }
-    </style>
-  </div>
-
-  {%- include social-bar.html -%}
 
   {{ content }}
 
+  <h2 class="post-list-heading">Posts:</h2>
+
+  {% assign posts = site.posts %}
+
+  {%- if posts.size > 0 -%}
+    {%- if page.list_title -%}
+      <h2 class="post-list-heading">{{ page.list_title }}</h2>
+    {%- endif -%}
+    <ul class="post-list">
+      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+      {%- for post in posts -%}
+        <li>
+          <span class="post-meta">{{ post.date | date: date_format }}</span>
+          <h3>
+            <a class="post-link" href="{{ post.url | relative_url }}">
+              {{ post.title | escape }}
+            </a>
+          </h3>
+          {%- if site.show_excerpts -%}
+            {{ post.excerpt }}
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
 </div>

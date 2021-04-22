@@ -1,5 +1,6 @@
 <div>
-  <div id="dark-theme" style="margin-right: 0px;" class="pretty p-icon p-toggle p-plain">
+  <div id="dark-theme" style="margin-right: unset;" class="pretty p-icon p-toggle p-plain">
+    <label hidden for="dark-check">Dark/Solarized</label>
     <input id="dark-check" onclick="switch_theme('dark', this.checked)" type="checkbox" />
     <div class="state p-success-o p-on">
       🌘
@@ -9,6 +10,7 @@
     </div>
   </div>
   <div id="classic-theme" class="pretty p-icon p-toggle p-plain">
+    <label hidden for="classic-check">Classic/Solarized</label>
     <input id="classic-check" onclick="switch_theme('classic', this.checked)" type="checkbox" />
     <div class="state p-success-o p-on">
       🌞

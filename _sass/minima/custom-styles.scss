@@ -8,6 +8,10 @@
   text-align: center;
 }
 
+.text-right {
+  text-align: right;
+}
+
 .mt-lg {
   margin-top: 20px !important;
 }
@@ -28,7 +32,7 @@
 
 
 /**
- * `container` element
+ * `container`
  */
 .container {
   margin: 10px 10px 10px 10px;
@@ -120,4 +124,23 @@
 .emoji-icon[zoom=out]:hover, .emoji-icon[zoom=out]:focus, .emoji-icon[zoom=out]:active {
   -webkit-animation-name: emoji-icon-zoom-out;
   animation-name: emoji-icon-zoom-out;
+}
+
+
+
+/**
+ * `user-intro`
+ */
+.user-intro::first-line {
+  font-size: xx-large;
+}
+
+.user-intro p {
+  white-space: pre-line;
+}
+
+.user-intro {
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
