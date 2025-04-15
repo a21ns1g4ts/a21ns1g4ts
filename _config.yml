@@ -23,7 +23,7 @@ email: atila.danvi@outlook.com
 description: >- # this means to ignore newlines until "baseurl:"
   Dropped into the software ocean and was never seen more.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://atiladanvi.me" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://a21ns1g4ts.com/" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: a21ns1g4ts
 github_username: a21ns1g4ts
 codersrank_username: a21ns1g4ts
@@ -31,6 +31,8 @@ flickr_username: a21ns1g4ts
 
 # Build settings
 theme: minima
+
+paginate: 5
 
 minima:
   skin: dark
