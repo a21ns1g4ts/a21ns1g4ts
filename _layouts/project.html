@@ -7,22 +7,24 @@ layout: default
     <h1 class="page-title p-name" itemprop="name headline">{{ page.name | escape }}</h1>
     <p class="p-name" itemprop="name headline">{{ page.description | escape }}</p>
     {%- if page.source_url -%}
-      :octocat: <a target="_blank" href="{{ page.source_url }}">Source code</a>
+    <img class="emoji" title=":octocat:" alt=":octocat:"
+      src="https://github.githubassets.com/images/icons/emoji/octocat.png" height="20" width="20"> <a target="_blank"
+      href="{{ page.source_url }}">Source code</a>
     {%- endif -%}
     <br>
     {%- if page.demo_url -%}
-      :computer: <a target="_blank" href="{{ page.demo_url }}">Live demo</a> <br>
+    :computer: <a target="_blank" href="{{ page.demo_url }}">Live demo</a> <br>
     {%- endif -%}
   </header>
 
   <div class="page-content e-content" itemprop="pageBody">
     {%- if page.content -%}
-      {{ page.content }}
+    {{ page.content }}
     {%- endif -%}
   </div>
 
   {%- if site.disqus.shortname -%}
-    {%- include disqus_comments.html -%}
+  {%- include disqus_comments.html -%}
   {%- endif -%}
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>

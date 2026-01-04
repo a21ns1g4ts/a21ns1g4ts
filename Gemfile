@@ -7,7 +7,7 @@ source "https://rubygems.org"
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "~> 4.0.1"
+gem "jekyll", "~> 4.3"
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 
 
@@ -20,7 +20,14 @@ group :jekyll_plugins do
   gem "jekyll-feed", ">= 0.15"
   gem "jekyll-seo-tag", ">= 2.7"
   gem "jemoji", ">= 0.13"
+  gem "jekyll-paginate"
 end
+
+# Ruby 3.4+ requires these standard library gems to be explicitly added
+gem "erb"
+gem "logger"
+gem "csv"
+gem "base64"
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
@@ -33,4 +40,4 @@ end
 gem "wdm", "~> 0.1.1", :install_if => Gem.win_platform?
 
 
-gem "webrick", "~> 1.7"
+gem "webrick", ">= 1.7"
