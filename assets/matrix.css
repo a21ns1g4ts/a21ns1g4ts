@@ -108,7 +108,7 @@ body.no-scroll {
 }
 #explosion.explode {
   opacity: 1;
-  animation: boom 0.9s ease-in-out forwards;
+  animation: boom 0.1s ease-in-out forwards;
 }
 @keyframes boom {
   0% {

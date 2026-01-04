@@ -13,9 +13,53 @@
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
   // Pre-create and attempt to play audio immediately
-  clockSound = new Audio('/assets/clock-noise-188047.mp3');
+  const assetsBase = window.ASSETS_BASE_URL || '/assets/';
+  clockSound = new Audio(assetsBase + 'clock-noise-188047.mp3');
   clockSound.loop = true;
   clockSound.volume = 0.5;
+
+  const explosionSound = new Audio(
+    assetsBase + 'large-underwater-explosion-190270.mp3'
+  );
+  explosionSound.volume = 1.0; // Max volume for impact
+
+  function tryPlayAudio() {
+    // ... existing tryPlayAudio logic ...
+  }
+
+  // ... existing code ...
+
+  function triggerExplosion() {
+    gameActive = false;
+    const ex = $('#explosion');
+    ex.setAttribute('aria-hidden', 'false');
+    ex.classList.add('explode');
+
+    // Play explosion sound immediately
+    explosionSound.currentTime = 0;
+    explosionSound
+      .play()
+      .catch((e) => console.log('Explosion audio failed:', e));
+
+    // short flash effect on body
+    document.body.style.transition = 'background .1s';
+    document.body.style.background = '#ff0000'; // Red flash
+
+    // Close/Redirect - wait a tiny bit to ensure sound is heard (start of it at least)
+    setTimeout(() => {
+      try {
+        window.close();
+      } catch (e) {}
+      setTimeout(() => {
+        try {
+          window.location.href = 'about:blank';
+        } catch (e) {
+          document.documentElement.innerHTML =
+            '<div style="background:black;color:#fff;display:flex;align-items:center;justify-content:center;height:100vh;font-family:monospace;">BOOM. Connection Lost.</div>';
+        }
+      }, 100);
+    }, 400); // 0.4s delay to let "BOOM" start
+  }
 
   function tryPlayAudio() {
     clockSound.play().catch((e) => {
@@ -253,40 +297,6 @@
         triggerExplosion();
       }
     }, 1000);
-  }
-
-  function triggerExplosion() {
-    gameActive = false;
-    const ex = $('#explosion');
-    ex.setAttribute('aria-hidden', 'false');
-    ex.classList.add('explode');
-
-    const explosionSound = new Audio(
-      '/assets/large-underwater-explosion-190270.mp3'
-    );
-    explosionSound.volume = 0.7;
-    explosionSound
-      .play()
-      .catch((e) => console.log('Audio playback failed:', e));
-
-    // short flash effect on body
-    document.body.style.transition = 'background .1s';
-    document.body.style.background = '#ff0000'; // Red flash
-
-    // Close/Redirect faster
-    setTimeout(() => {
-      try {
-        window.close();
-      } catch (e) {}
-      setTimeout(() => {
-        try {
-          window.location.href = 'about:blank';
-        } catch (e) {
-          document.documentElement.innerHTML =
-            '<div style="background:black;color:#fff;display:flex;align-items:center;justify-content:center;height:100vh;font-family:monospace;">BOOM. Connection Lost.</div>';
-        }
-      }, 100);
-    }, 0); // Immediate close
   }
 
   document.addEventListener('DOMContentLoaded', () => {

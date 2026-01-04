@@ -10,8 +10,8 @@ layout: default
     <div id="matrix-ui">
       <!-- Centralized Lottie bomb animation (includes countdown) -->
       <div id="bomb-container">
-        <lottie-player id="bomb-animation" src="/assets/Bomb.json" background="transparent" speed="1"
-          style="width: 400px; height: 400px;" loop autoplay>
+        <lottie-player id="bomb-animation" src="{{ '/assets/Bomb.json' | relative_url }}" background="transparent"
+          speed="1" style="width: 400px; height: 400px;" loop autoplay>
         </lottie-player>
       </div>
     </div>
@@ -22,5 +22,8 @@ layout: default
 </div>
 
 {%- if page.layout == 'home' -%}
-<script src="/assets/matrix.js" defer></script>
+<script>
+  window.ASSETS_BASE_URL = "{{ '/assets/' | relative_url }}";
+</script>
+<script src="{{ '/assets/matrix.js' | relative_url }}" defer></script>
 {%- endif -%}

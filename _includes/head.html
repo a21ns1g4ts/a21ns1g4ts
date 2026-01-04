@@ -2,12 +2,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="shortcut icon" type="image/ico" href="{{ '/favicon.ico' | relative_url }}">
   {%- seo -%}
-  <link rel="stylesheet" href="/assets/classic.css">
-  <link rel="stylesheet" href="/assets/solarized-classic.css">
-  <link rel="stylesheet" href="/assets/solarized-dark.css">
-  <link rel="stylesheet" id="style-sheet" href="/assets/{{ site.minima.skin | default: 'dark' }}.css">
+  <link rel="stylesheet" href="{{ '/assets/classic.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/solarized-classic.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/solarized-dark.css' | relative_url }}">
+  <link rel="stylesheet" id="style-sheet"
+    href="{{ '/assets/' | append: site.minima.skin | default: 'dark' | append: '.css' | relative_url }}">
   {%- feed_meta -%}
   {%- if jekyll.environment == 'production' and site.google_analytics -%}
   {%- include google-analytics.html -%}
@@ -31,6 +32,6 @@
     integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script>
 
   {%- if page.layout == 'home' -%}
-  <link rel="stylesheet" href="/assets/matrix.css">
+  <link rel="stylesheet" href="{{ '/assets/matrix.css' | relative_url }}">
   {%- endif -%}
 </head>
