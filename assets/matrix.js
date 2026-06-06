@@ -31,6 +31,11 @@
 
   function triggerExplosion() {
     gameActive = false;
+    const trackingPromise = trackMatrixChallenge('Challenge Lost', {
+      result: 'lost',
+      reason: 'timeout'
+    });
+
     const ex = $('#explosion');
     ex.setAttribute('aria-hidden', 'false');
     ex.classList.add('explode');
@@ -45,8 +50,16 @@
     document.body.style.transition = 'background .1s';
     document.body.style.background = '#ff0000'; // Red flash
 
-    // Close/Redirect - wait a tiny bit to ensure sound is heard (start of it at least)
-    setTimeout(() => {
+    const leaveAfterTracking = Promise.all([
+      new Promise((resolve) => setTimeout(resolve, 400)),
+      Promise.race([
+        trackingPromise,
+        new Promise((resolve) => setTimeout(resolve, 600))
+      ])
+    ]);
+
+    // Close/Redirect - wait a tiny bit to ensure sound is heard and tracking can flush.
+    leaveAfterTracking.finally(() => {
       try {
         window.close();
       } catch (e) {}
@@ -58,7 +71,7 @@
             '<div style="background:black;color:#fff;display:flex;align-items:center;justify-content:center;height:100vh;font-family:monospace;">BOOM. Connection Lost.</div>';
         }
       }, 100);
-    }, 400); // 0.4s delay to let "BOOM" start
+    });
   }
 
   function tryPlayAudio() {
@@ -105,17 +118,40 @@
 
   function trackMatrixChallenge(eventName, properties = {}) {
     if (!window.amplitude || typeof window.amplitude.track !== 'function') {
-      return;
+      return Promise.resolve();
     }
 
-    window.amplitude.track(eventName, {
-      challenge: 'matrix_bomb',
-      hacksNeeded: HACKS_NEEDED,
-      hacksCompleted: hacksCount,
-      durationSeconds: DURATION,
-      timeLeftSeconds: timeLeft,
-      ...properties
-    });
+    try {
+      window.amplitude.track(eventName, {
+        challenge: 'matrix_bomb',
+        hacksNeeded: HACKS_NEEDED,
+        hacksCompleted: hacksCount,
+        durationSeconds: DURATION,
+        timeLeftSeconds: timeLeft,
+        ...properties
+      });
+
+      if (typeof window.amplitude.flush !== 'function') {
+        return Promise.resolve();
+      }
+
+      const flushResult = window.amplitude.flush();
+      if (flushResult && typeof flushResult.then === 'function') {
+        return flushResult.catch(() => {});
+      }
+
+      if (
+        flushResult &&
+        flushResult.promise &&
+        typeof flushResult.promise.then === 'function'
+      ) {
+        return flushResult.promise.catch(() => {});
+      }
+    } catch (e) {
+      console.log('Amplitude tracking failed:', e);
+    }
+
+    return Promise.resolve();
   }
 
   function initCanvas() {
