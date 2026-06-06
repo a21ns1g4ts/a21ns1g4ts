@@ -1,7 +1,17 @@
 {%- assign amplitude_api_key = site.amplitude_api_key | default: '841385e15ba57ba98d64d676a2803565' -%}
 <script src="https://cdn.amplitude.com/script/{{ amplitude_api_key }}.js"></script>
 <script>
-  window.amplitude.add(window.sessionReplay.plugin({ sampleRate: 1 }));
+  window.amplitude.add(window.sessionReplay.plugin({
+    sampleRate: 1,
+    privacyConfig: {
+      unmaskSelector: [
+        '#matrix-replay-bg',
+        '#matrix-replay-bg *',
+        '#matrix-hud',
+        '#matrix-hud *'
+      ]
+    }
+  }));
   window.amplitude.init('{{ amplitude_api_key }}', {
     fetchRemoteConfig: true,
     autocapture: {

@@ -31,9 +31,65 @@ body.no-scroll {
   z-index: 1;
   display: block;
 }
+#matrix-replay-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--matrix-green);
+  font-family: monospace;
+  font-size: clamp(12px, 1.7vw, 18px);
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0.34;
+  mix-blend-mode: screen;
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.85);
+}
+#matrix-replay-bg span {
+  position: absolute;
+  top: -45vh;
+  left: var(--x);
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  animation: matrixReplayRain var(--duration) linear infinite;
+  animation-delay: var(--delay);
+}
+#matrix-replay-bg span:nth-child(3n) {
+  opacity: 0.55;
+}
+#matrix-replay-bg span:nth-child(4n) {
+  color: #ffffff;
+  opacity: 0.45;
+}
+#matrix-replay-bg span:nth-child(5n) {
+  color: #ff0033;
+  opacity: 0.35;
+}
+#matrix-hud {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 3;
+  box-sizing: border-box;
+  width: min(280px, calc(100vw - 20px));
+  padding: 10px 14px;
+  border: 2px solid var(--matrix-green);
+  background: rgba(0, 0, 0, 0.86);
+  color: var(--matrix-green);
+  font-family: monospace;
+  font-size: clamp(14px, 3.4vw, 16px);
+  font-weight: 700;
+  line-height: 1.55;
+  pointer-events: none;
+}
+#matrix-hud div:last-child {
+  color: #ff0033;
+}
 #matrix-ui {
   position: relative;
-  z-index: 2;
+  z-index: 4;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -42,6 +98,14 @@ body.no-scroll {
   gap: 2rem;
   padding: 2rem;
   pointer-events: none;
+}
+@keyframes matrixReplayRain {
+  from {
+    transform: translateY(-30vh);
+  }
+  to {
+    transform: translateY(150vh);
+  }
 }
 
 #bomb-container {

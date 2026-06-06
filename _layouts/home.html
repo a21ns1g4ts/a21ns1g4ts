@@ -7,11 +7,32 @@ layout: default
   <!-- Matrix intro overlay: canvas, countdown, bomb animation, phrases, explosion -->
   <div id="matrix-overlay" aria-hidden="false">
     <canvas id="matrix-canvas"></canvas>
+    <div id="matrix-replay-bg" class="amp-unmask" data-amp-unmask aria-hidden="true">
+      <span style="--x: 3%; --duration: 12s; --delay: -9s;">010011001101001011010110110001</span>
+      <span style="--x: 9%; --duration: 15s; --delay: -3s;">101100101001011001101001001110</span>
+      <span style="--x: 15%; --duration: 10s; --delay: -7s;">001011010010110110010100111010</span>
+      <span style="--x: 21%; --duration: 14s; --delay: -12s;">110010110100101101001101011001</span>
+      <span style="--x: 28%; --duration: 11s; --delay: -5s;">011010010110100101101101001011</span>
+      <span style="--x: 35%; --duration: 16s; --delay: -11s;">101001101101001011010010110100</span>
+      <span style="--x: 42%; --duration: 13s; --delay: -2s;">010110110010100111010110010101</span>
+      <span style="--x: 49%; --duration: 9s; --delay: -6s;">110101001011001011010011010110</span>
+      <span style="--x: 56%; --duration: 15s; --delay: -13s;">001101001011010110010110100101</span>
+      <span style="--x: 63%; --duration: 12s; --delay: -4s;">100101101001011011001010011101</span>
+      <span style="--x: 70%; --duration: 17s; --delay: -10s;">011011001010110100101101011001</span>
+      <span style="--x: 77%; --duration: 10s; --delay: -1s;">101101001011001101001011010010</span>
+      <span style="--x: 84%; --duration: 14s; --delay: -8s;">010010110110010100111010110010</span>
+      <span style="--x: 91%; --duration: 11s; --delay: -14s;">110100101101001101011001011010</span>
+      <span style="--x: 97%; --duration: 16s; --delay: -6s;">001011010110010110100101101001</span>
+    </div>
+    <div id="matrix-hud" class="amp-unmask" data-amp-unmask aria-hidden="true">
+      <div>SYSTEM HACKS: <span id="matrix-hacks-count">0</span>/3</div>
+      <div>MISSION: CLICK RED FLAGS</div>
+    </div>
     <div id="matrix-ui">
       <!-- Centralized Lottie bomb animation (includes countdown) -->
       <div id="bomb-container">
         <lottie-player id="bomb-animation" src="{{ '/assets/Bomb.json' | relative_url }}" background="transparent"
-          speed="1" style="width: 400px; height: 400px;" loop autoplay>
+          speed="1" style="width: min(400px, 92vw); height: min(400px, 92vw);" loop autoplay>
         </lottie-player>
       </div>
     </div>

@@ -282,29 +282,16 @@
         }
       }
 
-      // Draw HUD
-      if (gameActive) {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
-        ctx.fillRect(10, 10, 280, 70);
-        ctx.strokeStyle = '#39ff14';
-        ctx.lineWidth = 2;
-        ctx.strokeRect(10, 10, 280, 70);
-
-        ctx.fillStyle = '#39ff14';
-        ctx.font = 'bold 16px monospace';
-        ctx.fillText(`SYSTEM HACKS: ${hacksCount}/${HACKS_NEEDED}`, 25, 35);
-
-        ctx.fillStyle = '#ff0033';
-        ctx.fillText(`MISSION: CLICK RED FLAGS`, 25, 60);
-      }
-
       requestAnimationFrame(draw);
     }
     draw();
   }
 
   function updateStatus() {
-    // Optional: Update HTML UI if we had one, currently using Canvas HUD
+    const hacksCountEl = $('#matrix-hacks-count');
+    if (hacksCountEl) {
+      hacksCountEl.textContent = hacksCount;
+    }
   }
 
   function disarmBomb() {
@@ -325,6 +312,10 @@
 
     // Show Access Granted
     const ui = $('#matrix-ui');
+    const hud = $('#matrix-hud');
+    if (hud) {
+      hud.style.display = 'none';
+    }
     ui.innerHTML =
       '<h1 style="color:#39ff14; font-family:monospace; font-size: 3rem; text-shadow: 0 0 10px #39ff14;">ACCESS GRANTED</h1>';
 
