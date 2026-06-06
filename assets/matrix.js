@@ -103,6 +103,21 @@
     osc.stop(audioCtx.currentTime + dur);
   }
 
+  function trackMatrixChallenge(eventName, properties = {}) {
+    if (!window.amplitude || typeof window.amplitude.track !== 'function') {
+      return;
+    }
+
+    window.amplitude.track(eventName, {
+      challenge: 'matrix_bomb',
+      hacksNeeded: HACKS_NEEDED,
+      hacksCompleted: hacksCount,
+      durationSeconds: DURATION,
+      timeLeftSeconds: timeLeft,
+      ...properties
+    });
+  }
+
   function initCanvas() {
     const canvas = $('#matrix-canvas');
     const ctx = canvas.getContext('2d');
@@ -259,6 +274,10 @@
   function disarmBomb() {
     gameActive = false;
     clearInterval(intervalId);
+    trackMatrixChallenge('Challenge Won', {
+      result: 'won'
+    });
+
     if (clockSound) {
       clockSound.pause();
       clockSound.currentTime = 0;

@@ -55,6 +55,7 @@ lang: pt-BR
 
 # Analytics
 google_analytics: true
+amplitude_api_key: 841385e15ba57ba98d64d676a2803565
 
 # Collections
 collections:

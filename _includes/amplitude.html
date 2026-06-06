@@ -1,0 +1,26 @@
+{%- assign amplitude_api_key = site.amplitude_api_key | default: '841385e15ba57ba98d64d676a2803565' -%}
+<script src="https://cdn.amplitude.com/script/{{ amplitude_api_key }}.js"></script>
+<script>
+  window.amplitude.add(window.sessionReplay.plugin({ sampleRate: 1 }));
+  window.amplitude.init('{{ amplitude_api_key }}', {
+    fetchRemoteConfig: true,
+    autocapture: {
+      attribution: {
+        trackingMethod: ['userProperty', 'eventProperty']
+      },
+      fileDownloads: true,
+      formInteractions: true,
+      pageViews: true,
+      sessions: true,
+      elementInteractions: true,
+      networkTracking: true,
+      webVitals: true,
+      frustrationInteractions: {
+        thrashedCursor: true,
+        errorClicks: true,
+        deadClicks: true,
+        rageClicks: true
+      }
+    }
+  });
+</script>
